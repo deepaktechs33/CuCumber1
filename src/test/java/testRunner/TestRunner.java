@@ -13,7 +13,7 @@ import io.cucumber.junit.CucumberOptions;
 				//features = "classpath:features/login.feature",
 				//features = "classpath:features/hamberger.feature",
 						//features = "classpath:features/sort.feature",
-								features = "classpath:features/endtoendflow.feature"	,
+								features = "classpath:features/endtoendflow.feature",
 											
 		
 		

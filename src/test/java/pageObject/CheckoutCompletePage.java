@@ -22,7 +22,9 @@ public class CheckoutCompletePage extends BasePage {
 	}
 
 	public void clickBackHome() {
-		wait.until(ExpectedConditions.elementToBeClickable(btnBackHome)).click();
-		wait.until(ExpectedConditions.urlContains("inventory.html"));
+
+	    wait.until(ExpectedConditions.elementToBeClickable(btnBackHome)).click();
+
+	    wait.until(ExpectedConditions.urlContains("inventory.html"));
 	}
 }
