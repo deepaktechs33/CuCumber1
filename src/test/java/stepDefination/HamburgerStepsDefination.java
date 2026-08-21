@@ -37,10 +37,10 @@ public class HamburgerStepsDefination {
     public void the_user_clicks_on_the_menu_option(String optionName) {
     	hamburgerPage.clickMenuOption(optionName);
     }
-
     @When("the user navigates back to the previous page")
     public void the_user_navigates_back_to_the_previous_page() {
         driver.navigate().back();
+        BaseClass.getWait().until(ExpectedConditions.urlToBe("https://www.saucedemo.com/inventory.html"));
     }
 
     @Then("the user should be redirected to the login page")
