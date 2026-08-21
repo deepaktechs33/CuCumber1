@@ -1,16 +1,19 @@
 
 package stepDefination;
-
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.util.Properties;
-
+import io.cucumber.java.After;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+
 import org.openqa.selenium.WebDriver;
 
 import factory.BaseClass;
-import io.cucumber.java.After;
-import io.cucumber.java.AfterStep;
+
+
 import io.cucumber.java.Before;
 import io.cucumber.java.Scenario;
 
@@ -26,7 +29,7 @@ public class Hooks {
 		driver.manage().window().maximize();
 	}
 
-	@After
+	@After(order=0)
 	public void tearDown() {
 		if (driver != null) {
 			driver.quit();
@@ -34,13 +37,44 @@ public class Hooks {
 		BaseClass.reset();
 	}
 
-	@AfterStep
+
+	@After(order =1)
 	public void addScreenshot(Scenario scenario) {
-		// this is for cucumber junit report
+
 		if (scenario.isFailed()) {
+
 			TakesScreenshot ts = (TakesScreenshot) driver;
-			byte[] screenshot = ts.getScreenshotAs(OutputType.BYTES);
-			scenario.attach(screenshot, "image/png", scenario.getName());
+
+			File source = ts.getScreenshotAs(OutputType.FILE);
+
+			File destination = new File(
+					System.getProperty("user.dir")
+					+ "/target/screenshots/"
+					+ scenario.getName()
+					.replaceAll("[^a-zA-Z0-9.-]", "_")
+					+ ".png"
+					);
+
+			try {
+
+				Files.createDirectories(
+						destination.getParentFile().toPath()
+						);
+
+				Files.copy(
+						source.toPath(),
+						destination.toPath(),
+						StandardCopyOption.REPLACE_EXISTING
+						);
+
+				System.out.println(
+						"Screenshot saved at: "
+								+ destination.getAbsolutePath()
+						);
+
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 	}
 }

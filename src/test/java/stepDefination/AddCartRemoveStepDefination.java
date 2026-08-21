@@ -60,13 +60,19 @@ public class AddCartRemoveStepDefination {
     }
 
     @When("the user adds the following products to the cart:")
-    public void the_user_adds_the_following_products_to_the_cart(DataTable dataTable) {
-        List<String> products = dataTable.asList(String.class);
-        homePage.addProductsToCart(products);
-        Assert.assertEquals(
-                "Cart badge count does not match the number of products added",
-                products.size(),
-                homePage.getCartItemCount()
-        );
+   public void the_user_adds_the_following_products_to_the_cart(DataTable dataTable) {
+       List<String> products = dataTable.asList(String.class);
+      homePage.addProductsToCart(products);
+     Assert.assertEquals(
+           "Cart badge count does not match the number of products added",
+              products.size(),   
+              homePage.getCartItemCount()
+                                          
+      );
+//     Assert.assertEquals(
+//    	        "Cart badge count does not match the number of products added",
+//    	        999,                          // ← changed from products.size() to a wrong number
+//    	        homePage.getCartItemCount()
+//    	);
     }
 }
