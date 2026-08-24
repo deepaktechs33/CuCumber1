@@ -2,6 +2,7 @@ package pageObject;
 
 
 
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -63,6 +64,8 @@ public class HamburgerPage extends BasePage {
     }
 
     public void clickMenuOption(String optionName) {
-        wait.until(ExpectedConditions.elementToBeClickable(getMenuElement(optionName))).click();
+        WebElement menuOption = wait.until(ExpectedConditions.elementToBeClickable(getMenuElement(optionName)));
+        ((JavascriptExecutor) driver).executeScript(
+            "var el = arguments[0]; setTimeout(function(){ el.click(); }, 0);", menuOption);
     }
 }
