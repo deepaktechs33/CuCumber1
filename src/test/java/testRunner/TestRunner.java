@@ -7,9 +7,9 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 	//features ="classpath:features/footer.feature",
 				
-		features = "classpath:features/addremovecart.feature",
+		//features = "classpath:features/addremovecart.feature",
 		
-				//features = "src/test/resources/features", 
+				features = "src/test/resources/features", 
 				//features = "classpath:features/login.feature",
 				//features = "classpath:features/hamberger.feature",
 						//features = "classpath:features/sort.feature",
