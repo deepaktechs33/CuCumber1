@@ -1,22 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: testRunner.TestRunner
 -------------------------------------------------------------------------------
-Tests run: 3, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 18.08 s <<< FAILURE! -- in testRunner.TestRunner
-Add and remove products from the cart.Add multiple products and remove only one -- Time elapsed: 1.941 s <<< ERROR!
-io.cucumber.junit.UndefinedStepException: 
-The step 'the user adds the following products to the cart:' is undefined.
-You can implement this step using the snippet(s) below:
-
-@When("the user adds the following products to the cart:")
-public void the_user_adds_the_following_products_to_the_cart(io.cucumber.datatable.DataTable dataTable) {
-    // Write code here that turns the phrase above into concrete actions
-    // For automatic transformation, change DataTable to one of
-    // E, List<E>, List<List<E>>, List<Map<K,V>>, Map<K,V> or
-    // Map<K, List<V>>. E,K,V must be a String, Integer, Float,
-    // Double, Byte, Short, Long, BigInteger or BigDecimal.
-    //
-    // For other transformations you can register a DataTableType.
-    throw new io.cucumber.java.PendingException();
-}
-
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 15.88 s -- in testRunner.TestRunner

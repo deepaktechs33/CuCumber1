@@ -1,4 +1,3 @@
-
 package stepDefination;
 import java.io.File;
 import java.io.IOException;
@@ -26,7 +25,6 @@ public class Hooks {
 		driver = BaseClass.initilizeBrowser();
 		p = BaseClass.getProperties();
 		driver.get(p.getProperty("appURL"));
-		driver.manage().window().maximize();
 	}
 
 	@After(order=0)
