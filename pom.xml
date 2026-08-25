@@ -10,23 +10,28 @@ xsi:schemaLocation="https://maven.apache.org/POM/4.0.0
   <build>
     <plugins>
       <plugin>
-        <groupId>net.masterthought</groupId>
-        <artifactId>maven-cucumber-reporting</artifactId>
-        <version>5.7.7</version>
-        <executions>
-          <execution>
+    <groupId>net.masterthought</groupId>
+    <artifactId>maven-cucumber-reporting</artifactId>
+    <version>5.7.7</version>
+    <executions>
+        <execution>
             <id>execution</id>
             <phase>verify</phase>
-            <goals><goal>generate</goal></goals>
+            <goals>
+                <goal>generate</goal>
+            </goals>
             <configuration>
-              <projectName>Cucumber1</projectName>
-              <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
-              <cucumberOutputDir>${project.build.directory}/cucumber-reports</cucumberOutputDir>
-              <buildNumber>${BUILD_NUMBER}</buildNumber>
+                <projectName>Cucumber1</projectName>
+                <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
+                <inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
+                <jsonFiles>
+                    <param>**/*.json</param>
+                </jsonFiles>
+                <buildNumber>${BUILD_NUMBER}</buildNumber>
             </configuration>
-          </execution>
-        </executions>
-      </plugin>
+        </execution>
+    </executions>
+</plugin>
 
       <!-- Maven Compiler Plugin -->
       <plugin>
