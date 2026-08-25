@@ -59,9 +59,9 @@ public class HamburgerStepsDefination {
     public void the_user_should_be_redirected_to_the_login_page() {
         BaseClass.getWait().until(ExpectedConditions.urlToBe("https://www.saucedemo.com/"));
         Assert.assertEquals(
-                driver.getCurrentUrl(),
+                "User was not redirected to the login page after logout",
                 "https://www.saucedemo.com/",
-                "User was not redirected to the login page after logout"
+                driver.getCurrentUrl()
         );
     }
 }
