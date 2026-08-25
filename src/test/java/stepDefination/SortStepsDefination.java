@@ -1,7 +1,8 @@
 package stepDefination;
 
+import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+
 
 import factory.BaseClass;
 import io.cucumber.java.en.Then;
@@ -28,13 +29,14 @@ public class SortStepsDefination {
     @Then("the products should be sorted by {string}")
     public void the_products_should_be_sorted_by(String sortOption) {
         Assert.assertEquals(
-                sortPage.getSelectedSortOption(),
+                "Dropdown did not show the selected sort option",
                 sortOption,
-                "Dropdown did not show the selected sort option"
+                sortPage.getSelectedSortOption()
         );
         Assert.assertTrue(
-                sortPage.isSortWorkingCorrectly(sortOption),
-                "Products are not actually sorted by " + sortOption
+                "Products are not actually sorted by " + sortOption,
+                sortPage.isSortWorkingCorrectly(sortOption)
         );
     }
+    
 }

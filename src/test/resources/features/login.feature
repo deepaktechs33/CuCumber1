@@ -8,13 +8,14 @@ Feature: Swag Labs Login
 
   # ---------- POSITIVE ----------
 
-  @positive 
+  @smoke @regression @positive
   Scenario: Successful login with valid standard user credentials
     When user logs in with username "standard_user" and password "secret_sauce"
     Then user should be navigated to the products page
     And the page title should be "Products"
 
 
+  @regression
   Scenario Outline: Successful login with different valid users
     When user logs in with username "<username>" and password "secret_sauce"
     Then user should be navigated to the products page
@@ -29,12 +30,13 @@ Feature: Swag Labs Login
 
   # ---------- NEGATIVE ----------
 
-
+  @regression
   Scenario: Login attempt with locked out user
     When user logs in with username "locked_out_user" and password "secret_sauce"
     Then user should see an error message "Sorry, this user has been locked out."
 
 
+  @regression
   Scenario Outline: Login attempt with invalid credentials
     When user logs in with username "<username>" and password "<password>"
     Then user should see an error message "<errorMessage>"
@@ -46,8 +48,3 @@ Feature: Swag Labs Login
       | standard_user |                 | Password is required                                         |
       |               | secret_sauce    | Username is required                                         |
       |               |                 | Username is required                                         |
-   
-      
-      
-      
-      

@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.Assert;
+import org.junit.Assert;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import factory.BaseClass;
@@ -29,8 +29,8 @@ public class HamburgerStepsDefination {
         List<String> options = dataTable.asList(String.class);
         for (String option : options) {
             Assert.assertTrue(
-                    hamburgerPage.isMenuOptionDisplayed(option),
-                    "'" + option + "' menu option not displayed"
+                    "'" + option + "' menu option not displayed",
+                    hamburgerPage.isMenuOptionDisplayed(option)
             );
         }
     }

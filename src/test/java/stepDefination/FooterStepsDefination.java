@@ -1,10 +1,11 @@
 package stepDefination;
 
-import io.cucumber.java.en.Given;
+
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
-import org.testng.Assert;
+
+import org.junit.Assert;
 
 import factory.BaseClass;
 import pageObject.FooterPage;
@@ -26,12 +27,12 @@ public class FooterStepsDefination {
 
     @Then("the footer should show the copyright and policy text")
     public void the_footer_should_show_the_copyright_and_policy_text() {
-        Assert.assertTrue(footerPage.isCopyrightTextDisplayed(), "Copyright text not displayed in footer");
-        Assert.assertTrue(footerPage.isPolicyTextDisplayed(), "Policy text (Terms of Service / Privacy Policy) not displayed in footer");
+        Assert.assertTrue("Copyright text not displayed in footer", footerPage.isCopyrightTextDisplayed());
+        Assert.assertTrue("Policy text (Terms of Service / Privacy Policy) not displayed in footer", footerPage.isPolicyTextDisplayed());
     }
 
     @Then("the social media links should be displayed")
     public void the_social_media_links_should_be_displayed() {
-        Assert.assertTrue(footerPage.areSocialMediaLinksDisplayed(), "Social media links are not displayed in footer");
+        Assert.assertTrue("Social media links are not displayed in footer", footerPage.areSocialMediaLinksDisplayed());
     }
 }

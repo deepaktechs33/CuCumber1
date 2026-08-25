@@ -16,18 +16,20 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BaseClass {
-	private static WebDriver driver;
-	private static Properties p;
-	private static WebDriverWait wait;
+
+	// one WebDriver per thread — required once scenarios run in parallel
+	private static final ThreadLocal<WebDriver> DRIVER = new ThreadLocal<>();
+	// one WebDriverWait per thread, tied to that thread's own driver
+	private static final ThreadLocal<WebDriverWait> WAIT = new ThreadLocal<>();
 
 	public static WebDriver initilizeBrowser() throws IOException {
-		p = getProperties();
+		Properties p = getProperties();
 		String executionEnv = p.getProperty("execution_env");
 		String browser = p.getProperty("browser").toLowerCase();
 		String os = p.getProperty("os").toLowerCase();
-
-		// read headless flag; default to false if the property is missing
 		boolean isHeadless = Boolean.parseBoolean(p.getProperty("headless", "false"));
+
+		WebDriver driver;
 
 		if (executionEnv.equalsIgnoreCase("remote")) {
 			DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -90,34 +92,46 @@ public class BaseClass {
 
 		driver.manage().deleteAllCookies();
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
+
+		DRIVER.set(driver);
 		return driver;
 	}
 
 	public static WebDriver getDriver() {
-		return driver;
+		return DRIVER.get();
 	}
 
 	public static WebDriverWait getWait() {
+		WebDriver driver = DRIVER.get();
 		if (driver == null) {
 			throw new IllegalStateException("Driver is not initialized. Call initilizeBrowser() first.");
 		}
-		if (wait == null) {
-			wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		if (WAIT.get() == null) {
+			WAIT.set(new WebDriverWait(driver, Duration.ofSeconds(10)));
 		}
-		return wait;
+		return WAIT.get();
 	}
 
 	public static Properties getProperties() throws IOException {
 		try (FileReader file = new FileReader(
 				System.getProperty("user.dir") + "/src/test/resources/config.properties")) {
-			p = new Properties();
+			Properties p = new Properties();
 			p.load(file);
 			return p;
 		}
 	}
 
+	public static void quitDriver() {
+		WebDriver driver = DRIVER.get();
+		if (driver != null) {
+			driver.quit();
+		}
+		DRIVER.remove();
+		WAIT.remove();
+	}
+
+	// kept so any existing calls to reset() still compile — now also quits the browser
 	public static void reset() {
-		driver = null;
-		wait = null;
+		quitDriver();
 	}
 }
