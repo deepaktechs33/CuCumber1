@@ -1,0 +1,5 @@
+12:53:56.287 [main] INFO  c.b.launchers.LaunchMavenCommand - Executing maven archetype command - browserstack-sdk-archetype-integrate
+12:53:56.313 [main] INFO  c.b.launchers.LaunchMavenCommand - The maven properties for launcher are [archetypeArtifactId=browserstack-sdk-archetype-integrate, BROWSERSTACK_ACCESS_KEY=YOUR_ACCESS_KEY, groupId=com.browserstack, BROWSERSTACK_APP=bs://sample.app, BROWSERSTACK_FRAMEWORK=java, version=1.0, PROJECT_NAME=BrowserStack Sample, archetypeVersion=1.5, archetypeGroupId=com.browserstack, artifactId=java-archetype-integrate, BROWSERSTACK_USERNAME=YOUR_USERNAME, BUILD_NAME=browserstack build, BROWSERSTACK_SOURCE=java:appium-eclipse:v1.0.10]
+12:53:56.320 [Worker-378: Launching mavenrun-07122065-1264-4d8b-9338-ea79921b0557] INFO  c.b.BrowserStackPluginActivator - The previous launch removed.
+14:15:20.341 [Worker-378: Launching TestRunner] INFO  c.b.BrowserStackPluginActivator - The previous launch removed.
+14:15:20.543 [Worker-378: Launching TestRunner] INFO  c.b.BrowserStackPluginActivator - The environment variables for the launch configuration are {}

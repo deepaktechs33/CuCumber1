@@ -1,7 +1,4 @@
-<project xmlns="https://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://maven.apache.org/POM/4.0.0
-         https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><project xmlns="https://maven.apache.org/POM/4.0.0" xmlns:xsi="https://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://maven.apache.org/POM/4.0.0          https://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <modelVersion>4.0.0</modelVersion>
 
@@ -115,6 +112,13 @@
             <version>6.3.4</version>
         </dependency>
 
+        <dependency>
+      <groupId>com.browserstack</groupId>
+      <artifactId>browserstack-java-sdk</artifactId>
+      <version>LATEST</version>
+      <scope>compile</scope>
+    </dependency>
+
     </dependencies>
 
 
@@ -145,13 +149,9 @@
 
                             <projectName>Cucumber1</projectName>
 
-                            <outputDirectory>
-                                ${project.build.directory}/cucumber-html-reports
-                            </outputDirectory>
+                            <outputDirectory>${project.build.directory}/cucumber-html-reports</outputDirectory>
 
-                            <inputDirectory>
-                                ${project.build.directory}/cucumber-reports
-                            </inputDirectory>
+                            <inputDirectory>${project.build.directory}/cucumber-reports</inputDirectory>
 
                             <jsonFiles>
                                 <param>**/*.json</param>
@@ -196,10 +196,8 @@
                 <configuration>
 
                     <systemPropertyVariables>
-                        <allure.results.directory>
-                            ${project.build.directory}/allure-results
-                        </allure.results.directory>
-                    </systemPropertyVariables>
+                        <allure.results.directory>${project.build.directory}/allure-results</allure.results.directory>
+                    </systemPropertyVariables><argLine>-javaagent:"${com.browserstack:browserstack-java-sdk:jar}"</argLine>
 
                     <forkCount>1</forkCount>
                     <reuseForks>true</reuseForks>
@@ -209,6 +207,19 @@
                 </configuration>
 
             </plugin>
+
+            <plugin>
+        <artifactId>maven-dependency-plugin</artifactId>
+        <version>3.3.0</version>
+        <executions>
+          <execution>
+            <id>getClasspathFilenames</id>
+            <goals>
+              <goal>properties</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
 
         </plugins>
 

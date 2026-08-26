@@ -14,6 +14,7 @@ public class CheckoutCompletePage extends BasePage {
 	WebElement lblConfirmationHeader;
 	@FindBy(id = "back-to-products")
 	WebElement btnBackHome;
+	
 	public String getConfirmationHeader() {
 		return wait.until(ExpectedConditions.visibilityOf(lblConfirmationHeader)).getText();
 	}
