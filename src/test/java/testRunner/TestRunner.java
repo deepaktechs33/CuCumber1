@@ -11,13 +11,13 @@ import static io.cucumber.junit.platform.engine.Constants.ANSI_COLORS_DISABLED_P
 
 @Suite
 @IncludeEngines("cucumber")
-@SelectClasspathResource("features")
+//@SelectClasspathResource("features")
 //@SelectClasspathResource("features/sort.feature")
 //@SelectClasspathResource("features/hamberger.feature")
 //@SelectClasspathResource("features/footer.feature")
 //@SelectClasspathResource("features/addremovecart.feature")
 //@SelectClasspathResource("features/endtoendflow.feature")
-//@SelectClasspathResource("features/login.feature")
+@SelectClasspathResource("features/login.feature")
 
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepDefination")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME,
