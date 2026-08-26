@@ -52,7 +52,7 @@ public class Hooks {
 					+ scenario.getName().replaceAll("[^a-zA-Z0-9.-]", "_")
 					+ "_" + Thread.currentThread().getId()
 					+ ".png"
-			);
+					);
 			try {
 				Files.createDirectories(destination.getParentFile().toPath());
 				Files.copy(source.toPath(), destination.toPath(), StandardCopyOption.REPLACE_EXISTING);

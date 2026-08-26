@@ -27,10 +27,7 @@ public class CartPage extends BasePage {
         return wait.until(ExpectedConditions.visibilityOf(lblPageTitle)).getText();
     }
 
-    public void clickCheckout() {
-        wait.until(ExpectedConditions.elementToBeClickable(btnCheckout)).click();
-        wait.until(ExpectedConditions.urlContains("checkout-step-one.html"));
-    }
+    
 
     // Checks whether a product with this exact name is listed on the cart page
     public boolean isProductPresent(String productName) {
@@ -72,7 +69,17 @@ public class CartPage extends BasePage {
          wait.until(ExpectedConditions.invisibilityOfElementLocated(btnLocator));
      }
  }
-
+ public void clickCheckout() {
+	    WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(btnCheckout));
+	    btn.click();
+	    try {
+	        wait.until(ExpectedConditions.urlContains("checkout-step-one.html"));
+	    } catch (org.openqa.selenium.TimeoutException firstAttemptFailed) {
+	        WebElement retryBtn = wait.until(ExpectedConditions.presenceOfElementLocated(By.id("checkout")));
+	        ((org.openqa.selenium.JavascriptExecutor) driver).executeScript("arguments[0].click();", retryBtn);
+	        wait.until(ExpectedConditions.urlContains("checkout-step-one.html"));
+	    }
+	}
  // Number of product rows currently listed on the cart page.
  public int getCartItemCount() {
      try {

@@ -12,12 +12,20 @@ import static io.cucumber.junit.platform.engine.Constants.ANSI_COLORS_DISABLED_P
 @Suite
 @IncludeEngines("cucumber")
 @SelectClasspathResource("features")
+//@SelectClasspathResource("features/sort.feature")
+//@SelectClasspathResource("features/hamberger.feature")
+//@SelectClasspathResource("features/footer.feature")
+//@SelectClasspathResource("features/addremovecart.feature")
+//@SelectClasspathResource("features/endtoendflow.feature")
+//@SelectClasspathResource("features/login.feature")
+
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "stepDefination")
-@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value =
-        "pretty, html:target/cucumber-reports/cucumber.html, " +
-        "json:target/cucumber-reports/cucumber.json, " +
-        "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm, " +
-        "rerun:target/rerun.txt")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME,
+value =
+"pretty, html:target/cucumber-reports/cucumber.html, " +
+		"json:target/cucumber-reports/cucumber.json, " +
+		"io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm, " +
+		"rerun:target/rerun.txt")
 @ConfigurationParameter(key = ANSI_COLORS_DISABLED_PROPERTY_NAME, value = "true")
 public class TestRunner {
 }

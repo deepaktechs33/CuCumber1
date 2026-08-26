@@ -90,7 +90,11 @@ public class BaseClass {
 			throw new IllegalArgumentException("No matching execution_env configured: " + executionEnv);
 		}
 
-		driver.manage().deleteAllCookies();
+		try {
+		    driver.manage().deleteAllCookies();
+		} catch (Exception ignoredCookieCleanupFailure) {
+		    // Non-critical housekeeping — a transient hang here shouldn't fail the whole scenario.
+		}
 		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(30));
 
 		DRIVER.set(driver);

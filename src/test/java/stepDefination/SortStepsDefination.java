@@ -1,6 +1,7 @@
 package stepDefination;
 
-import org.junit.Assert;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.openqa.selenium.WebDriver;
 
 
@@ -13,30 +14,32 @@ import pageObject.SortPage;
 
 public class SortStepsDefination {
 
-    WebDriver driver = BaseClass.getDriver();
-    SortPage sortPage = new SortPage(driver);
+	WebDriver driver = BaseClass.getDriver();
+	SortPage sortPage = new SortPage(driver);
 
-    @When("the user opens the sort filter")
-    public void the_user_opens_the_sort_filter() {
-        sortPage.clickSortDropdown();
-    }
+	@When("the user opens the sort filter")
+	public void the_user_opens_the_sort_filter() {
 
-    @When("the user selects the {string} sort option")
-    public void the_user_selects_the_sort_option(String sortOption) {
-        sortPage.selectSortOption(sortOption);
-    }
+	    sortPage.clickSortDropdown();
+	}
 
-    @Then("the products should be sorted by {string}")
-    public void the_products_should_be_sorted_by(String sortOption) {
-        Assert.assertEquals(
-                "Dropdown did not show the selected sort option",
-                sortOption,
-                sortPage.getSelectedSortOption()
-        );
-        Assert.assertTrue(
-                "Products are not actually sorted by " + sortOption,
-                sortPage.isSortWorkingCorrectly(sortOption)
-        );
-    }
-    
-}
+	@When("the user selects the {string} sort option")
+	public void the_user_selects_the_sort_option(String sortOption) {
+
+	    sortPage.selectSortOption(sortOption);
+	}
+
+	@Then("the products should be sorted by {string}")
+	public void the_products_should_be_sorted_by(String sortOption) {
+
+	    assertEquals(
+	        sortOption,
+	        sortPage.getSelectedSortOption(),
+	        "Dropdown did not show the selected sort option"
+	    );
+
+	    assertTrue(
+	        sortPage.isSortWorkingCorrectly(sortOption),
+	        "Products are not actually sorted by " + sortOption
+	    );
+	}}

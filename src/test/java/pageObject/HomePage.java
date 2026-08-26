@@ -22,6 +22,7 @@ public class HomePage extends BasePage {
     @FindBy(className = "shopping_cart_badge")
     WebElement cartBadge;
 
+   
     public boolean isCartIconDisplayed() {
         try {
             return wait.until(
@@ -51,19 +52,16 @@ public class HomePage extends BasePage {
 
     public void addProductToCart(String productName) {
         By btnLocator = addToCartButton(productName);
+        int countBefore = getCartItemCount();
         WebElement btn = wait.until(ExpectedConditions.elementToBeClickable(btnLocator));
         btn.click();
-
         try {
-            // Confirms the click actually took effect before moving on.
-            wait.until(ExpectedConditions.visibilityOf(cartBadge));
+            wait.until(d -> getCartItemCount() > countBefore);
         } catch (org.openqa.selenium.TimeoutException firstAttemptFailed) {
-            // Same click-registers-but-doesn't-fire issue as goToCart().
-            // Re-locate the button (page state may have shifted) and retry via JS.
             WebElement retryBtn = wait.until(ExpectedConditions.presenceOfElementLocated(btnLocator));
             ((org.openqa.selenium.JavascriptExecutor) driver)
                     .executeScript("arguments[0].click();", retryBtn);
-            wait.until(ExpectedConditions.visibilityOf(cartBadge));
+            wait.until(d -> getCartItemCount() > countBefore);
         }
     }
  // Adds each product in the list one at a time, reusing the same

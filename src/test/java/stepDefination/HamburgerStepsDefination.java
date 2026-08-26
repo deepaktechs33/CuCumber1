@@ -7,7 +7,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
 import factory.BaseClass;
@@ -16,52 +16,55 @@ import pageObject.LoginPage;
 
 public class HamburgerStepsDefination {
 
-    WebDriver driver = BaseClass.getDriver();
-    HamburgerPage hamburgerPage = new HamburgerPage(driver);
+	WebDriver driver = BaseClass.getDriver();
+	HamburgerPage hamburgerPage = new HamburgerPage(driver);
 
-    @When("the user opens the hamburger menu")
-    public void the_user_opens_the_hamburger_menu() {
-        hamburgerPage.openMenu();
-    }
+	@When("the user opens the hamburger menu")
+	public void the_user_opens_the_hamburger_menu() {
+		hamburgerPage.openMenu();
+	}
 
-    @Then("the menu should display the following options:")
-    public void the_menu_should_display_the_following_options(DataTable dataTable) {
-        List<String> options = dataTable.asList(String.class);
-        for (String option : options) {
-            Assert.assertTrue(
-                    "'" + option + "' menu option not displayed",
-                    hamburgerPage.isMenuOptionDisplayed(option)
-            );
-        }
-    }
+	@Then("the menu should display the following options:")
+	public void the_menu_should_display_the_following_options(DataTable dataTable) {
 
-    @When("the user clicks on the {string} menu option")
-    public void the_user_clicks_on_the_menu_option(String optionName) {
-        hamburgerPage.clickMenuOption(optionName);
-    }
+	    List<String> options = dataTable.asList(String.class);
 
-    @When("the user navigates back to the previous page")
-    public void the_user_navigates_back_to_the_previous_page() {
-        // Wait for the "About" click's navigation to actually land on saucelabs.com
-        // before issuing our own navigation — prevents the two navigations from racing
-        // in the same tab, which was leaving the login form blank/unsubmitted.
-        new WebDriverWait(driver, Duration.ofSeconds(15))
-                .until(ExpectedConditions.urlContains("saucelabs.com"));
+	    for (String option : options) {
 
-        driver.navigate().to("https://www.saucedemo.com/");
-        LoginPage loginPage = new LoginPage(driver);
-        loginPage.login("standard_user", "secret_sauce");
-        new WebDriverWait(driver, Duration.ofSeconds(25))
-                .until(ExpectedConditions.urlToBe("https://www.saucedemo.com/inventory.html"));
-    }
+	        Assertions.assertTrue(
+	            hamburgerPage.isMenuOptionDisplayed(option),
+	            "'" + option + "' menu option not displayed"
+	        );
+	    }
+	}
 
-    @Then("the user should be redirected to the login page")
-    public void the_user_should_be_redirected_to_the_login_page() {
-        BaseClass.getWait().until(ExpectedConditions.urlToBe("https://www.saucedemo.com/"));
-        Assert.assertEquals(
-                "User was not redirected to the login page after logout",
-                "https://www.saucedemo.com/",
-                driver.getCurrentUrl()
-        );
-    }
+	@When("the user clicks on the {string} menu option")
+	public void the_user_clicks_on_the_menu_option(String optionName) {
+		hamburgerPage.clickMenuOption(optionName);
+	}
+
+	@When("the user navigates back to the previous page")
+	public void the_user_navigates_back_to_the_previous_page() {
+	    // Don't wait on saucelabs.com's own load state — it's a real external site we don't
+	    // control and can hang; we navigate away from it immediately regardless.
+	    driver.navigate().to("https://www.saucedemo.com/");
+	    LoginPage loginPage = new LoginPage(driver);
+	    loginPage.login("standard_user", "secret_sauce");
+	    new WebDriverWait(driver, Duration.ofSeconds(25))
+	        .until(ExpectedConditions.urlToBe("https://www.saucedemo.com/inventory.html"));
+	}
+
+	@Then("the user should be redirected to the login page")
+	public void the_user_should_be_redirected_to_the_login_page() {
+
+	    BaseClass.getWait().until(
+	        ExpectedConditions.urlToBe("https://www.saucedemo.com/")
+	    );
+
+	    Assertions.assertEquals(
+	        "https://www.saucedemo.com/",
+	        driver.getCurrentUrl(),
+	        "User was not redirected to the login page after logout"
+	    );
+	}
 }
