@@ -3,3 +3,22 @@
 12:53:56.320 [Worker-378: Launching mavenrun-07122065-1264-4d8b-9338-ea79921b0557] INFO  c.b.BrowserStackPluginActivator - The previous launch removed.
 14:15:20.341 [Worker-378: Launching TestRunner] INFO  c.b.BrowserStackPluginActivator - The previous launch removed.
 14:15:20.543 [Worker-378: Launching TestRunner] INFO  c.b.BrowserStackPluginActivator - The environment variables for the launch configuration are {}
+14:34:09.735 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackEnabled
+14:34:09.741 [main] INFO  c.b.BrowserStackPluginActivator - Prefs Keys []
+14:34:09.746 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackEnabled : true P/A
+14:34:09.747 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackDisabled
+14:34:09.747 [main] INFO  c.b.BrowserStackPluginActivator - Prefs Keys []
+14:34:09.749 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackDisabled : false P/A
+14:34:24.203 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackEnabled
+14:34:24.203 [main] INFO  c.b.BrowserStackPluginActivator - Prefs Keys []
+14:34:24.209 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackEnabled : true P/A
+14:34:24.212 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackDisabled
+14:34:24.212 [main] INFO  c.b.BrowserStackPluginActivator - Prefs Keys []
+14:34:24.216 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackDisabled : false P/A
+14:34:32.405 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackEnabled
+14:34:32.406 [main] INFO  c.b.BrowserStackPluginActivator - Prefs Keys []
+14:34:32.411 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackEnabled : true P/A
+14:34:32.413 [main] INFO  c.b.a.BrowserStackPropertyTester - Testing : isBrowserStackDisabled
+14:34:32.413 [main] INFO  c.b.BrowserStackPluginActivator - Prefs Keys []
+14:34:32.417 [main] INFO  c.b.a.BrowserStackPropertyTester - Validation Result isBrowserStackDisabled : false P/A
+15:17:27.661 [Framework stop - Equinox Container: cb360c98-c7d0-490a-8f97-30332cec1572] INFO  c.b.BrowserStackPluginActivator - Stopping BrowserStack Plugin...
